@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<style>
+			table{background-image:url(beijing.jpg);}
+			table caption{font-family:'Œ¢»Ì—≈∫⁄';font-size:30px;}
+			table td{width:100px;height:100px;}
+			img{margin-top:31px;}
+			#aa{margin-top:0px;}
+			#bb{margin-top:3px;}
+			/*body{cursor:pointer;ico ani}*/
+		</style>
+	</head>
+	<body>
+		<table>
+			<caption>¥Úµÿ Û</caption>
+			<tr>
+				<td><img src="keng.gif"/></td>
+				<td><img src="keng.gif"/></td>		
+				<td><img src="keng.gif"/></td>
+			</tr>
+			<tr>
+				<td><img src="keng.gif"/></td>
+				<td><img src="keng.gif"/></td>		
+				<td><img src="keng.gif"/></td>
+			</tr>
+			<tr>
+				<td><img src="keng.gif"/></td>
+				<td><img src="keng.gif"/></td>		
+				<td><img src="keng.gif"/></td>
+			</tr>
+		</table>
+	</body>
+	<script>
+		var mouses=document.getElementsByTagName('img');
+		setTimeout("mao()",Math.random()*400+800);
+		var num;
+		var sum=0;
+		function mao(){
+			
+			num=Math.floor(Math.random()*9);
+                        mouses[num].src="dishu.gif";
+			mouses[num].setAttribute('onclick','da()');
+			mouses[num].style.marginTop='0px';
+			
+			setTimeout("hui()",Math.random()*400+800);
+			
+		}
+		function hui(){
+			mouses[num].src="keng.gif";
+			mouses[num].removeAttribute('onclick');
+			mouses[num].style.marginTop='31px';
+			setTimeout("mao()",Math.random()*400+800);
+		}
+		function da(){
+			mouses[num].src="shang.gif";
+			mouses[num].removeAttribute('onclick');
+			mouses[num].style.marginTop='3px';
+			sum+=10;
+			alert(sum);
+			
+		}
+	</script>
+</html>

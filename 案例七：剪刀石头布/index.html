@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<style>
+			*{margin:0 auto;padding: 0}
+			body{background-color:#000;}
+			#header{width:425px;margin:50px auto}
+			#content{width:1024px;height:800px;margin:20px auto}
+     			#content #status{
+				float:left;
+				width:250px;
+				height:300px;
+				margin:auto 20px;
+				border:2px solid #fff;
+				font-family:'微软雅黑';
+				font-size:20px;
+				color:#fff;
+                                line-height:50px;
+				text-align:center;
+				padding-top:100px;
+			}
+			#content #workspace{
+				width:700px;
+				height:400px;
+				border:1px solid #fff;
+				float:right;
+			}
+			#content #workspace #player,#content #workspace #computer{
+				width:220px;
+				float:left;
+				margin:10px 60px;
+			}
+			
+			#content #workspace #text{
+				float:left;
+				width:60px;
+				font-family:'微软雅黑';
+				color:#fff;
+			}
+			#content #workspace #pic{
+				float:left;
+				width:140px;
+				margin-right:20px;
+			}
+			#content #workspace #clickqu{
+				clear:both;
+				width:550px;
+				height:200px;
+				margin-bottom:5px;
+				border:2px solid #fff;
+				position:relative;
+			}
+			#content #workspace #clickqu img{
+				position:absolute;
+			}
+			#content #workspace #clickqu #pic1{
+				left:20px;
+				top:20px;
+			}
+			#content #workspace #clickqu #pic2{
+				left:190px;
+				top:20px;
+			}
+			#content #workspace #clickqu #pic3{
+				left:360px;
+				top:20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<img src="images/title.png"/>
+		</div>
+		<div id="content">
+			<div id="status">
+				<p id="sum">总的局数:0</p>
+				<p id="success">胜利局数:0</p>
+				<p id="fail">失败局数:0</p>
+				<p id="eval">打平局数:0</p>
+			</div>
+			<div id="workspace">
+				<div id="chuquan">
+					<div id="player">
+						<div id="text"><h2>玩</h2><br /><h2>家</h2></div>
+						<div id="pic"><img id="pimg" src="images/shitou.png"/></div>
+					</div>
+					<div id="computer">
+						<div id="pic"><img id="cimg" src="images/shitou.png"/></div>
+						<div id="text"><h2>电</h2><br /><h2>脑</h2></div>
+					</div>
+				</div>
+				<div id="clickqu">
+					<a href="#"><img id="pic1" src="images/jiandao.png"/></a>
+					<a href="#"><img id="pic2" src="images/shitou.png"/></a>
+					<a href="#"><img id="pic3" src="images/bu.png"/></a>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var bus=document.getElementsByTagName('img');
+		var winner=[[0,-1,1],[1,0,-1],[-1,1,0]];
+		var p=1;
+		var c=1;
+		var win=0;
+		var fail=0;
+		var ping=0;
+		var sum=0;
+		for(var i=3;i<bus.length;i++){
+			(function(s){
+					bus[s].onmouseover=function(){
+						bus[s].style.top='17px';
+                                		bus[s].style.left=(s-3)*170+10+'px';
+					}
+					bus[s].onmouseout=function(){
+						bus[s].style.top='20px';
+                                		bus[s].style.left=(s-3)*170+20+"px";
+					}
+					bus[s].onclick=function(){
+						document.getElementById('pimg').src=bus[s].src;
+						p=s-3;
+						var n=Math.floor(Math.random()*3+3);
+						document.getElementById('cimg').src=bus[n].src;
+						c=n-3;
+						switch(winner[p][c]){
+							case -1:fail++;document.getElementById('fail').innerHTML="失败局数"+fail+"局";break;
+							case 1:win++;document.getElementById('success').innerHTML="胜利局数"+win+"局";break;
+							case 0:ping++;document.getElementById('eval').innerHTML="平局局数"+ping+"局";break;
+						}
+						sum++;
+						document.getElementById('sum').innerHTML="总的局数"+sum+"局";
+					}
+			})(i);
+			
+		}
+		
+	</script>
+</html>

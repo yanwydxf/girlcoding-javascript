@@ -1,0 +1,136 @@
+<html>
+	<head>
+		<style>
+			*{margin:0px;padding:0px}
+			ul{width:684px;
+			   height:684px;
+			   background:url(images/bg.jpg) no-repeat;
+			   list-style:none;
+			   position:relative}
+			ul li{
+			   width:142px;
+			   height:142px;
+			   position:absolute;
+			}
+			ul #go1{
+				left:55px;
+				top:50px;
+				
+			}
+			ul #go2{
+				left:197px;
+				top:50px;
+				
+			}
+			ul #go3{
+				left:339px;
+				top:50px;
+				
+			}
+			ul #go4{
+				left:481px;
+				top:50px;
+				
+				
+			}
+			ul #go5{
+				left:481px;
+				top:192px;
+				
+				
+			}
+			ul #go6{
+				left:481px;
+				top:334px;
+				
+				
+			}	
+			ul #go7{
+				left:481px;
+				top:476px;
+				
+			}
+			ul #go10{
+				left:55px;
+				top:476px;
+				
+			}	
+			ul #go9{
+				left:197px;
+				top:476px;
+				
+			}
+			ul #go8{
+				left:339px;
+				top:476px;
+				
+			}
+			ul #go12{
+				left:55px;
+				top:192px;
+			}
+			ul #go11{
+				left:55px;
+				top:334px;
+			}		
+		</style>
+
+	</head>
+	<body>
+		<ul onclick="lun()" id="jiang">
+			<li id="go1"><img src="images/3.png"/></li>
+			<li id="go2"><img src="images/1.png"/></li>
+			<li id="go3"><img src="images/2.png"/></li>
+			<li id="go4"><img src="images/3.png"/></li>
+			<li id="go5"><img src="images/4.png"/></li>
+			<li id="go6"><img src="images/5.png"/></li>
+			<li id="go7"><img src="images/3.png"/></li>
+			<li id="go8"><img src="images/6.png"/></li>
+			<li id="go9"><img src="images/7.png"/></li>
+			<li id="go10"><img src="images/3.png"/></li>
+			<li id="go11"><img src="images/8.png"/></li>
+			<li id="go12"><img src="images/3.png"/></li>
+			
+		</ul>
+	</body>
+	<script>
+		var t;
+		var index=0;
+		var arr;
+		
+		var ting;
+		var bian;
+		var flag=true;/*布尔型的类，当true，加速，当false，减速*/
+			
+		function lun(){
+			arr=document.getElementsByTagName("li");
+			bian=Math.random()*400;
+			ting=Math.floor(Math.random()*2000+2000);
+			alert(ting);
+			document.getElementById('jiang').removeAttribute('onclick');/*移除属性*/
+			t=setInterval("changePic()",bian);
+			setTimeout("stop()",ting);
+		}
+		function changePic(){
+			clearInterval(t);
+			bian=Math.random()*400;
+			t=setInterval("changePic()",bian);
+			index++;
+			if(index>=arr.length){
+				index=0;
+			}
+			
+			if(index==0){
+				arr[11].style.backgroundColor="transparent";
+			}else{
+				arr[index-1].style.backgroundColor="transparent";
+			}
+			arr[index].style.backgroundColor="#f00";
+			
+		}
+		function stop(){
+			
+			clearInterval(t);
+		}
+	</script>
+</html>

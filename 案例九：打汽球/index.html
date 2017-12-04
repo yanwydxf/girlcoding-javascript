@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<style>
+			body{
+				background:url("background.jpg") repeat-x 50% 0;
+				position:relative;
+			}
+			div{
+				width:480px;
+				height:640px;
+				position:absolute;
+				left:50%;
+				top:50%;
+			}
+			p{
+				font-size:25px;
+			}
+		</style>
+	</head>
+	<body>
+		<p>分数：<span id="fen">0</span></p>
+		<div id="play"></div>
+	</body>
+	<script>
+		var arr=['qiqiu1.png','qiqiu2.png','qiqiu3.png','qiqiu4.png','qiqiu5.png','qiqiu6.png','qiqiu7.png','qiqiu8.png'];
+		var qiu=[];
+		var pos=[];
+		var sum=0;
+		var t=setInterval("birth()",500);
+		setInterval("change()",100);
+		function change(){
+			if(qiu.length==0)return;
+			for(var i=qiu.length-1;i>=0;i--){
+				pos[i]-=Math.random()*5+5;
+				if(pos[i]<-250){
+					document.getElementsByTagName('body')[0].removeChild(qiu[i]);
+					qiu.splice(i,1);
+					pos.splice(i,1);
+					
+					
+				}
+				
+				qiu[i].style.marginTop=pos[i]+'px';
+			}
+			
+		}
+		function birth(){
+			/*if(qiu.length>5){
+				clearInterval(t);
+			}*/
+			var num=Math.floor(Math.random()*8);
+			/*新建一个html元素*/
+			var a=document.createElement('img');
+			/*html元素对应的属性值*/
+			qiu.push(a);
+			pos.push(700);
+			a.src=arr[num];
+			a.setAttribute('onclick','da('+qiu.indexOf(a)+')');
+			
+			a.style.marginTop='700px';
+			a.style.marginLeft=Math.random()*480;
+			
+			document.getElementById("play").appendChild(a);
+		}
+		function da(id){
+			
+			document.getElementById("play").removeChild(qiu[id]);
+			qiu.splice(id,1);
+			pos.splice(id,1);
+			sum+=Math.floor(Math.random()*30);
+			for(var i=0;i<qiu.length;i++){
+				qiu[i].removeAttribute('onclick');
+				qiu[i].setAttribute('onclick','da('+i+')');
+
+				
+			}
+			document.getElementById("fen").innerHTML=sum;
+		}
+	</script>
+</html>
